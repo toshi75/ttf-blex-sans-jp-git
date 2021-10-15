@@ -1,0 +1,25 @@
+# Maintainer: You <spam at example dot com>
+# Contributor: toshi75 <spammail at example dot com>
+pkgname=ttf-blex-sans-jp-git
+_pkgname=ttf-blex-sans-jp
+pkgver=6.0.0_unhinted
+pkgrel=1
+pkgdesc="A Nerd Font patched version of IBM Plex™ Sans Jp"
+arch=('any')
+url="https://www.nerdfonts.com"
+license=('OFL')
+makedepends=('git')
+install="$pkgname.install"
+source=("git+https://github.com/toshi75/ttf-blex-sans-jp.git")
+sha256sums=('SKIP')
+
+package() {
+ #cd "$srcdir/$_pkgname/hinted-nard-linux"
+  cd "$srcdir/$_pkgname/unhinted-nard-linux"
+  install -d "$pkgdir/usr/share/fonts/TTF"
+  install -m644 *.ttf "$pkgdir/usr/share/fonts/TTF/"
+  install -d "$pkgdir/usr/share/licenses/$_pkgname"
+  install -m644 license.txt "$pkgdir/usr/share/licenses/$_pkgname/"
+}
+#   install -D -m644 "DPSansMono-$pkgver.ttf" "$pkgdir/usr/share/fonts/TTF/DPSansMono.ttf"
+#   install -D -m644 "LICENSE" "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
